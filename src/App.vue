@@ -2,6 +2,7 @@
     <div class="app">
         <h1>Страница с постами</h1>
         <!-- <my-button @click="fetchPosts">Получить посты</my-button> -->
+        
         <div class="app-btns">
             <my-button
                 @click="showDialog"
@@ -36,7 +37,8 @@
     
     export default {
         components: {
-            PostList, PostForm
+            PostList,
+            PostForm,
         },
         data() {
             return {
@@ -44,6 +46,7 @@
                 dialogVisible: false,
                 isPostsLoading: false,
                 selectedSort: '',
+                searchQuery: '',
                 sortOptions: [
                     {value: 'title', name: 'По названию'},
                     {value: 'body', name: 'По содержимому'}
@@ -81,9 +84,23 @@
         mounted() {
             this.fetchPosts();
         },
+        copmputed: {
+            /*sortedPosts(){
+                return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
+            },
+            */
+            /*
+            sortedAndSearchedPosts() {
+                return this.sortedPosts.filter(post => post.title.includes(this.searchQuery))
+            }*/
+        },
+
         watch: {
             selectedSort(newValue) {
                 console.log(newValue);
+                this.posts.sort((post1, post2) => {
+                    return post1[newValue]?.localeCompare(post2[newValue])
+                })
             },
             dialogVisible(newValue){
 

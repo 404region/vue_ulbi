@@ -27,6 +27,8 @@
 <script>
 //import MyButton from "@/components/UI/MyButton.vue";
 
+
+
 export default {
    /*components: {
         MyButton
@@ -48,6 +50,22 @@ export default {
                 body: ''
             }
         }
+    },
+    watch: {
+        //Отслеживание когда пост создается
+        post(newVal) {
+            console.log(newVal);
+        }
+        /*
+        //глубокое отслеживание - отслеживает не только когда пост создается,
+        // но и при изменении полей всплывающего окна
+        post: {
+            handler(newVal) {
+                console.log(newVal);
+            },
+            deep: true
+        }
+        */
     }
 }
 </script>
